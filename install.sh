@@ -1,6 +1,6 @@
 #!/bin/bash
 
-files=".antigen.zsh .git-aliases .vimrc .zshrc"
+files=".antigen.zsh .git-aliases .octaverc .vimrc .zshrc"
 pathToScript=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 ##########

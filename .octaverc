@@ -1,0 +1,5 @@
+setenv GNUTERM x11
+set (0, "defaultaxesfontname", "Roboto-Light")
+set (0, "defaulttextfontname", "Roboto-Light")
+set (0, "defaultaxesfontsize", 10)
+set (0, "defaulttextfontsize", 10)
