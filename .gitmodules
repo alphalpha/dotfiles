@@ -1,3 +1,6 @@
 [submodule "textmate/bundles/matlab.tmbundle"]
 	path = textmate/bundles/matlab.tmbundle
 	url = https://github.com/textmate/matlab.tmbundle.git
+[submodule "textmate/bundles/qml.tmbundle"]
+	path = textmate/bundles/qml.tmbundle
+	url = https://github.com/tadelv/qml.tmbundle.git
