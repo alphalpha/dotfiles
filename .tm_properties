@@ -1,0 +1,12 @@
+[ *.{cpp,hpp,c,h} ]
+softWrap         = false
+wrapColumn          = 90
+
+[ *.{m,mm} ]
+softWrap         = false
+wrapColumn          = 80
+
+[ .git/COMMIT_EDITMSG ]
+softWrap         = true
+spellChecking    = true
+spellingLanguage = 'en'
