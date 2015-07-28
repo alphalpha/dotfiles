@@ -4,3 +4,6 @@
 [submodule "textmate/bundles/qml.tmbundle"]
 	path = textmate/bundles/qml.tmbundle
 	url = https://github.com/tadelv/qml.tmbundle.git
+[submodule "textmate/bundles/Whitespace.tmbundle"]
+	path = textmate/bundles/Whitespace.tmbundle
+	url = https://github.com/mads379/Whitespace.tmbundle.git
