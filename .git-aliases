@@ -1,4 +1,5 @@
 [alias]
+  sus = submodule foreach 'git status --short'
   sup = submodule update --recursive --init
   lg = log --graph --color --name-only --decorate=full
   lgs = log --graph --color --oneline --decorate=full
