@@ -15,3 +15,4 @@
   recent = !git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short):%(committerdate:relative)' |column -t -s ':'
   vimdiff = difftool -y -t vimdiff -R
   files = diff --name-status
+  alias = !git config --get-regexp alias
