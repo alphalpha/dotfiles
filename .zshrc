@@ -5,9 +5,9 @@ if [[ -s "`eval echo ~`/.zshrc-local" ]]; then
 fi
 
 # Source aliases
-if [[ -s "`eval echo ~`/.dotfiles/.zsh-aliases" ]]; then
+if [[ -s "`eval echo ~`/.zsh-aliases" ]]; then
   echo "source zsh-aliases"
-  source ~/.dotfiles/.zsh-aliases
+  source ~/.zsh-aliases
 fi
 
 # Source aliases
