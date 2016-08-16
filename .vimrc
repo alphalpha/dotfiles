@@ -1,6 +1,5 @@
-"Set up pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect('bundle/{}')
+execute pathogen#infect('bundle/{}')
 Helptags
 
 filetype plugin indent on
@@ -15,6 +14,7 @@ set hlsearch
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set backspace=2
 set expandtab
 set relativenumber
 set number
@@ -28,13 +28,6 @@ set statusline+=\ %c:%l\
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%91v', 100)
-set backspace=2
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
-"set t_Co=256
-"colorscheme CandyPaper
-colorscheme molokai
-"set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=0
-"colorscheme solarized
+"colorscheme molokai
