@@ -16,3 +16,6 @@
   vimdiff = difftool -y -t vimdiff -R
   files = diff --name-status
   alias = !git config --get-regexp alias
+  id = rev-parse
+  ir = rebase -i
+  st = status
