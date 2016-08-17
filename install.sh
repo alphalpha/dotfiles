@@ -5,6 +5,8 @@ pathToScript=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ##########
 
 for filename in src/*; do
-  echo "creating symlink to ~/.${filename##*/} in home directory."
-  ln -fs $pathToScript/$filename ~/.${filename##*/}
+  source=$pathToScript/$filename
+  target=~/.${filename##*/}
+  echo "link ${source} to ${target} in home directory."
+  ln -fs ${source} ${target}
 done
