@@ -13,3 +13,6 @@
 [submodule "modules/smyck-color-scheme"]
 	path = modules/smyck-color-scheme
 	url = git@github.com:hukl/Smyck-Color-Scheme.git
+[submodule "modules/vim-gutentags"]
+	path = modules/vim-gutentags
+	url = git@github.com:ludovicchabant/vim-gutentags.git

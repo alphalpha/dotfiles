@@ -19,3 +19,11 @@ source=$pathToScript/$vimcolorschemefolder/$vimcolorscheme
 target=~/.vim/colors/$vimcolorscheme
 echo "link ${source} to ${target} in home directory."
 ln -fs ${source} ${target}
+
+##########
+
+gutentagsfolder=vim-gutentags
+source=$pathToScript/modules/$gutentagsfolder
+target=~/.vim/pack/alphalpha/start/$gutentagsfolder
+echo "link ${source} to ${target}."
+ln -fs ${source} ${target}
