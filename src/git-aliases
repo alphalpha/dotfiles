@@ -19,3 +19,4 @@
   id = rev-parse
   ir = rebase -i
   st = status
+  chid = !git id @ | pbcopy
