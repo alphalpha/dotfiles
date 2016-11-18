@@ -1,7 +1,3 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect('bundle/{}')
-Helptags
-
 filetype plugin indent on
 syntax on
 highlight ExtraWhitespace ctermbg=red guibg=red
