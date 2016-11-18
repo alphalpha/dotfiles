@@ -2,5 +2,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias rmf='rm -rf'
 alias o=open
-alias `brew --prefix`/bin/ctags
+#alias `brew --prefix`/bin/ctags
 alias g=git
+alias tag='ctags -R -f ./.git/tags .'
