@@ -10,3 +10,6 @@
 [submodule "textmate/bundles/Ensure-New-Line-at-the-EOF.tmbundle"]
 	path = textmate/bundles/Ensure-New-Line-at-the-EOF.tmbundle
 	url = https://github.com/hajder/Ensure-New-Line-at-the-EOF.tmbundle.git
+[submodule "modules/smyck-color-scheme"]
+	path = modules/smyck-color-scheme
+	url = git@github.com:hukl/Smyck-Color-Scheme.git

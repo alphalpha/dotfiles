@@ -10,3 +10,12 @@ for filename in src/*; do
   echo "link ${source} to ${target} in home directory."
   ln -fs ${source} ${target}
 done
+
+##########
+
+vimcolorschemefolder=modules/smyck-color-scheme
+vimcolorscheme=smyck.vim
+source=$pathToScript/$vimcolorschemefolder/$vimcolorscheme
+target=~/.vim/colors/$vimcolorscheme
+echo "link ${source} to ${target} in home directory."
+ln -fs ${source} ${target}

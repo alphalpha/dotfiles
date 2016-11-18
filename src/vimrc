@@ -30,4 +30,4 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%91v', 100)
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
-"colorscheme molokai
+colorscheme smyck
