@@ -12,18 +12,64 @@ for filename in src/*; do
 done
 
 ##########
-
-vimcolorschemefolder=modules/smyck-color-scheme
-vimcolorscheme=smyck.vim
-source=$pathToScript/$vimcolorschemefolder/$vimcolorscheme
-target=~/.vim/colors/$vimcolorscheme
-echo "link ${source} to ${target} in home directory."
-ln -fs ${source} ${target}
+modulesdir=$pathToScript/modules
+if [ ! -d "$modulesdir" ]; then
+  echo "no modules present" 
+fi
 
 ##########
+vimdir=~/.vim
+if [ ! -d "$vimdir" ]; then
+  mkdir $vimdir
+fi
 
-gutentagsfolder=vim-gutentags
-source=$pathToScript/modules/$gutentagsfolder
-target=~/.vim/pack/alphalpha/start/$gutentagsfolder
-echo "link ${source} to ${target}."
-ln -fs ${source} ${target}
+##########
+vimcolorsdir=$vimdir/colors
+if [ ! -d "$vimcolorsdir" ]; then
+  mkdir $vimcolorsdir
+fi
+
+##########
+vimcolorschemefolder=$modulesdir/smyck-color-scheme
+vimcolorscheme=smyck.vim
+source=$vimcolorschemefolder/$vimcolorscheme
+if [ -f "$source" ]; then
+  target=$vimcolorsdir/$vimcolorscheme
+  if [ -f "$target" ]; then
+    rm -rf $target
+  fi
+  echo "link ${source} to ${target} in home directory."
+  ln -fs ${source} ${target}
+else
+  echo "no color scheme"
+fi
+
+##########
+vimpacksdir=$vimdir/pack
+if [ ! -d "$vimpacksdir" ]; then
+  mkdir $vimpacksdir
+fi
+
+vimpacksdir=$vimpacksdir/alphalpha
+if [ ! -d "$vimpacksdir" ]; then
+  mkdir $vimpacksdir
+fi
+
+vimpacksdir=$vimpacksdir/start
+if [ ! -d "$vimpacksdir" ]; then
+  mkdir $vimpacksdir
+fi
+
+##########
+gutentagsdir=vim-gutentags
+source=$modulesdir/$gutentagsdir
+if [ -d "$source" ]; then
+  target=$vimpacksdir/$gutentagsdir
+  if [ -d "$target" ]; then
+    rm -rf $target
+  fi
+  echo "link ${source} to ${target} in home directory."
+  ln -fs ${source} ${target}
+else
+  echo "gutentags module not present"
+fi
