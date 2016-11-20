@@ -38,7 +38,7 @@ if [ -f "$source" ]; then
   if [ -f "$target" ]; then
     rm -rf $target
   fi
-  echo "link ${source} to ${target} in home directory."
+  echo "link ${source} to ${target}."
   ln -fs ${source} ${target}
 else
   echo "no color scheme"
@@ -68,7 +68,7 @@ if [ -d "$source" ]; then
   if [ -d "$target" ]; then
     rm -rf $target
   fi
-  echo "link ${source} to ${target} in home directory."
+  echo "link ${source} to ${target}."
   ln -fs ${source} ${target}
 else
   echo "gutentags module not present"
