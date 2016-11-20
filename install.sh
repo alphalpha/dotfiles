@@ -7,8 +7,10 @@ pathToScript=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 for filename in src/*; do
   source=$pathToScript/$filename
   target=~/.${filename##*/}
-  echo "link ${source} to ${target} in home directory."
-  ln -fs ${source} ${target}
+  if [ -L "$target" ]; then
+    rm -rf "$target"
+  fi
+  ln -fsv "$source" "$target"
 done
 
 ##########
@@ -20,13 +22,13 @@ fi
 ##########
 vimdir=~/.vim
 if [ ! -d "$vimdir" ]; then
-  mkdir $vimdir
+  mkdir "$vimdir"
 fi
 
 ##########
 vimcolorsdir=$vimdir/colors
 if [ ! -d "$vimcolorsdir" ]; then
-  mkdir $vimcolorsdir
+  mkdir "$vimcolorsdir"
 fi
 
 ##########
@@ -35,11 +37,10 @@ vimcolorscheme=smyck.vim
 source=$vimcolorschemefolder/$vimcolorscheme
 if [ -f "$source" ]; then
   target=$vimcolorsdir/$vimcolorscheme
-  if [ -f "$target" ]; then
-    rm -rf $target
+  if [ -L "$target" ]; then
+    rm -rf "$target"
   fi
-  echo "link ${source} to ${target}."
-  ln -fs ${source} ${target}
+  ln -fsv "$source" "$target"
 else
   echo "no color scheme"
 fi
@@ -47,17 +48,17 @@ fi
 ##########
 vimpacksdir=$vimdir/pack
 if [ ! -d "$vimpacksdir" ]; then
-  mkdir $vimpacksdir
+  mkdir "$vimpacksdir"
 fi
 
 vimpacksdir=$vimpacksdir/alphalpha
 if [ ! -d "$vimpacksdir" ]; then
-  mkdir $vimpacksdir
+  mkdir "$vimpacksdir"
 fi
 
 vimpacksdir=$vimpacksdir/start
 if [ ! -d "$vimpacksdir" ]; then
-  mkdir $vimpacksdir
+  mkdir "$vimpacksdir"
 fi
 
 ##########
@@ -66,10 +67,9 @@ source=$modulesdir/$gutentagsdir
 if [ -d "$source" ]; then
   target=$vimpacksdir/$gutentagsdir
   if [ -d "$target" ]; then
-    rm -rf $target
+    rm -rf "$target"
   fi
-  echo "link ${source} to ${target}."
-  ln -fs ${source} ${target}
+  ln -fsv "$source" "$target"
 else
   echo "gutentags module not present"
 fi
