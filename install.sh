@@ -2,8 +2,34 @@
 
 pathToScript=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-##########
+cmdExists() { type -t "$1" &> /dev/null; }
 
+dirIsEmpty() {
+  if [ -d $1 ]; then
+    if [ "$(ls -A $1)" ]; then
+      return 1;
+    else
+      return 0;
+    fi
+  else
+   echo "$1 is not a directory"
+   exit 99
+  fi
+}
+
+##########
+modulesdir=$pathToScript/modules
+if [ ! -d "$modulesdir" ]; then
+  echo "submodules folder does not exist"
+  exit 1
+else
+  if dirIsEmpty $modulesdir; then
+    echo "submodules not installed"
+    exit 1
+  fi
+fi
+
+##########
 for filename in home/*; do
   source=$pathToScript/$filename
   target=~/.${filename##*/}
@@ -14,72 +40,73 @@ for filename in home/*; do
 done
 
 ##########
-hammerspoondir=~/.hammerspoon
-if [ -d "$hammerspoondir" ]; then
-  source=$pathToScript/hammerspoon/init.lua
-  target=$hammerspoondir/init.lua
-  ln -fsv "$source" "$target"
-else
-  echo "hammerspoon not installed"
-fi
-
-##########
-modulesdir=$pathToScript/modules
-if [ ! -d "$modulesdir" ]; then
-  echo "no modules present" 
-fi
-
-##########
-vimdir=~/.vim
-if [ ! -d "$vimdir" ]; then
-  mkdir "$vimdir"
-fi
-
-##########
-vimcolorsdir=$vimdir/colors
-if [ ! -d "$vimcolorsdir" ]; then
-  mkdir "$vimcolorsdir"
-fi
-
-##########
-vimcolorschemefolder=$modulesdir/smyck-color-scheme
-vimcolorscheme=smyck.vim
-source=$vimcolorschemefolder/$vimcolorscheme
-if [ -f "$source" ]; then
-  target=$vimcolorsdir/$vimcolorscheme
-  if [ -L "$target" ]; then
-    rm -rf "$target"
+if [[ "$OSTYPE"=="darwin"* ]]; then
+  hammerspoondir=~/.hammerspoon
+  if [ -d "$hammerspoondir" ]; then
+    source=$pathToScript/hammerspoon/init.lua
+    target=$hammerspoondir/init.lua
+    ln -fsv "$source" "$target"
+  else
+    echo "hammerspoon not installed"
   fi
-  ln -fsv "$source" "$target"
+fi
+
+##########
+if ! cmdExists vim; then
+  echo "vim is not installed"
 else
-  echo "no color scheme"
-fi
-
-##########
-vimpacksdir=$vimdir/pack
-if [ ! -d "$vimpacksdir" ]; then
-  mkdir "$vimpacksdir"
-fi
-
-vimpacksdir=$vimpacksdir/alphalpha
-if [ ! -d "$vimpacksdir" ]; then
-  mkdir "$vimpacksdir"
-fi
-
-vimpacksdir=$vimpacksdir/start
-if [ ! -d "$vimpacksdir" ]; then
-  mkdir "$vimpacksdir"
-fi
-
-##########
-gutentagsdir=vim-gutentags
-source=$modulesdir/$gutentagsdir
-if [ -d "$source" ]; then
-  target=$vimpacksdir/$gutentagsdir
-  if [ -d "$target" ]; then
-    rm -rf "$target"
+  vimdir=~/.vim
+  if [ ! -d "$vimdir" ]; then
+    mkdir "$vimdir"
   fi
-  ln -fsv "$source" "$target"
-else
-  echo "gutentags module not present"
+
+  ##########
+  vimcolorsdir=$vimdir/colors
+  if [ ! -d "$vimcolorsdir" ]; then
+    mkdir "$vimcolorsdir"
+  fi
+
+  ##########
+  vimcolorschemefolder=$modulesdir/smyck-color-scheme
+  vimcolorscheme=smyck.vim
+  source=$vimcolorschemefolder/$vimcolorscheme
+  if [ -f "$source" ]; then
+    target=$vimcolorsdir/$vimcolorscheme
+    if [ -L "$target" ]; then
+      rm -rf "$target"
+    fi
+    ln -fsv "$source" "$target"
+  else
+    echo "no color scheme"
+  fi
+
+  ##########
+  vimpacksdir=$vimdir/pack
+  if [ ! -d "$vimpacksdir" ]; then
+    mkdir "$vimpacksdir"
+  fi
+
+  vimpacksdir=$vimpacksdir/alphalpha
+  if [ ! -d "$vimpacksdir" ]; then
+    mkdir "$vimpacksdir"
+  fi
+
+  vimpacksdir=$vimpacksdir/start
+  if [ ! -d "$vimpacksdir" ]; then
+    mkdir "$vimpacksdir"
+  fi
+
+  ##########
+  gutentagsdir=vim-gutentags
+  source=$modulesdir/$gutentagsdir
+  if [ -d "$source" ]; then
+    target=$vimpacksdir/$gutentagsdir
+    if [ -d "$target" ]; then
+      rm -rf "$target"
+    fi
+    ln -fsv "$source" "$target"
+  else
+    echo "gutentags module not present"
+  fi
 fi
+
