@@ -25,7 +25,8 @@ if [[ -s "`eval echo ~`/.antigen.zsh" ]]; then
   antigen bundle git-flow
   antigen bundle z
 
-  if [ "$OSTYPE"="darwin11.0" ]; then
+  if [[ "$OSTYPE"=="darwin"* ]]; then
+    echo "osx specific bundle"
     antigen-bundle osx
   fi
 
