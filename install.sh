@@ -14,6 +14,16 @@ for filename in src/*; do
 done
 
 ##########
+hammerspoondir=~/.hammerspoon
+if [ -d "$hammerspoondir" ]; then
+  source=$pathToScript/hammerspoon/init.lua
+  target=$hammerspoondir/init.lua
+  ln -fsv "$source" "$target"
+else
+  echo "hammerspoon not installed"
+fi
+
+##########
 modulesdir=$pathToScript/modules
 if [ ! -d "$modulesdir" ]; then
   echo "no modules present" 
