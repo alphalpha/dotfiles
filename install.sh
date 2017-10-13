@@ -4,7 +4,7 @@ pathToScript=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 ##########
 
-for filename in src/*; do
+for filename in home/*; do
   source=$pathToScript/$filename
   target=~/.${filename##*/}
   if [ -L "$target" ]; then
