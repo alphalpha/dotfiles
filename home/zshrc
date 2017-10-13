@@ -1,19 +1,24 @@
+fileExists() { test -e $1 }
+
 # Use local settings if it exists
-if [[ -s "`eval echo ~`/.zshrc-local" ]]; then
-  echo "source zshrc-local"
-  source ~/.zshrc-local
+file=~/.zshrc-local
+if fileExists  $file; then
+  echo "source $file"
+  source $file
 fi
 
 # Source aliases
-if [[ -s "`eval echo ~`/.zsh-aliases" ]]; then
-  echo "source zsh-aliases"
-  source ~/.zsh-aliases
+file=~/.zsh-aliases
+if fileExists  $file; then
+  echo "source $file"
+  source $file
 fi
 
 # Source aliases
-if [[ -s "`eval echo ~`/.antigen.zsh" ]]; then
-  echo "source antigen"
-  source ~/.antigen.zsh
+file=~/.antigen.zsh
+if fileExists $file; then
+  echo "source $file"
+  source $file
 
 # Load the oh-my-zsh's library.
   antigen use oh-my-zsh
