@@ -17,6 +17,17 @@ dirIsEmpty() {
   fi
 }
 
+# $1:sourceFolder $2:target $3:prefix
+createSymLinks() {
+  for filename in $1/*; do
+    source=$pathToScript/$filename
+    target=$2/$3${filename##*/}
+    if [ -L "$target" ]; then
+      rm -rf "$target"
+    fi
+    ln -fsv "$source" "$target"
+  done
+}
 ##########
 modulesdir=$pathToScript/modules
 if [ ! -d "$modulesdir" ]; then
@@ -29,23 +40,14 @@ else
   fi
 fi
 
-##########
-for filename in home/*; do
-  source=$pathToScript/$filename
-  target=~/.${filename##*/}
-  if [ -L "$target" ]; then
-    rm -rf "$target"
-  fi
-  ln -fsv "$source" "$target"
-done
+########## home
+createSymLinks home ~ .
 
-##########
+########## hammerspoon
 if [[ "$OSTYPE"=="darwin"* ]]; then
   hammerspoondir=~/.hammerspoon
   if [ -d "$hammerspoondir" ]; then
-    source=$pathToScript/hammerspoon/init.lua
-    target=$hammerspoondir/init.lua
-    ln -fsv "$source" "$target"
+    createSymLinks hammerspoon $hammerspoondir
   else
     echo "hammerspoon not installed"
   fi
