@@ -17,15 +17,20 @@ dirIsEmpty() {
   fi
 }
 
+# $1:source $2:target
+createSymLink() {
+  if [ -L "$2" ]; then
+    rm -rf "$2"
+  fi
+  ln -fsv "$1" "$2"
+}
+
 # $1:sourceFolder $2:target $3:prefix
 createSymLinks() {
   for filename in $1/*; do
     source=$pathToScript/$filename
     target=$2/$3${filename##*/}
-    if [ -L "$target" ]; then
-      rm -rf "$target"
-    fi
-    ln -fsv "$source" "$target"
+    createSymLink $source $target
   done
 }
 ##########
@@ -74,10 +79,7 @@ else
   source=$vimcolorschemefolder/$vimcolorscheme
   if [ -f "$source" ]; then
     target=$vimcolorsdir/$vimcolorscheme
-    if [ -L "$target" ]; then
-      rm -rf "$target"
-    fi
-    ln -fsv "$source" "$target"
+    createSymLink $source $target
   else
     echo "no color scheme"
   fi
@@ -103,10 +105,7 @@ else
   source=$modulesdir/$gutentagsdir
   if [ -d "$source" ]; then
     target=$vimpacksdir/$gutentagsdir
-    if [ -d "$target" ]; then
-      rm -rf "$target"
-    fi
-    ln -fsv "$source" "$target"
+    createSymLink $source $target
   else
     echo "gutentags module not present"
   fi
