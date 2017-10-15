@@ -23,23 +23,15 @@ end
 
 -- Add entry to table if it does not exist
 function addEntry(t, entry)
-  if next(t) == nil then
+  if not hs.fnutils.contains(t, entry) then
     table.insert(t, entry)
-    return
   end
-
-  for key, value in pairs(t) do
-    if value == entry then
-      return
-    end
-  end
-  table.insert(t, entry)
 end
 
 -- Gather all paths containing config lua files
 local paths = {}
 -- Add standard path
-table.insert(paths, hs.configdir)
+addEntry(paths, hs.configdir)
 -- Add paths according to symbolic links
 for file in hs.fs.dir(hs.configdir) do
   if file ~= "." and file ~= ".." and file~=nil and file:match("%.lua") then
