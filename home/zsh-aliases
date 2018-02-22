@@ -5,3 +5,4 @@ alias o=open
 #alias `brew --prefix`/bin/ctags
 alias g=git
 alias tag='ctags -R -f ./.git/tags .'
+alias lst='ls -ltr'
