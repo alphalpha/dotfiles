@@ -109,5 +109,14 @@ else
   else
     echo "gutentags module not present"
   fi
+  ##########
+  rustvimdir=rust.vim
+  source=$modulesdir/$rustvimdir
+  if [ -d "$source" ]; then
+    target=$vimpacksdir/$rustvimdir
+    createSymLink $source $target
+  else
+    echo "rust.vim module not present"
+  fi
 fi
 

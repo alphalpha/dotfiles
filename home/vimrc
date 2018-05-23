@@ -27,3 +27,5 @@ call matchadd('ColorColumn', '\%91v', 100)
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 colorscheme smyck
+
+let g:rustfmt_autosave = 1

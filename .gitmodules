@@ -4,3 +4,6 @@
 [submodule "modules/vim-gutentags"]
 	path = modules/vim-gutentags
 	url = git@github.com:ludovicchabant/vim-gutentags.git
+[submodule "modules/rust.vim"]
+	path = modules/rust.vim
+	url = git@github.com:rust-lang/rust.vim.git
