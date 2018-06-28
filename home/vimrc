@@ -25,6 +25,7 @@ set statusline+=\ %c:%l\
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%91v', 100)
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+autocmd BufWritePost *.py execute ':Black'
 
 colorscheme smyck
 

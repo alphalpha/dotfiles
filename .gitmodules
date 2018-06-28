@@ -7,3 +7,6 @@
 [submodule "modules/rust.vim"]
 	path = modules/rust.vim
 	url = git@github.com:rust-lang/rust.vim.git
+[submodule "modules/black"]
+	path = modules/black
+	url = git@github.com:ambv/black.git

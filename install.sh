@@ -109,6 +109,7 @@ else
   else
     echo "gutentags module not present"
   fi
+
   ##########
   rustvimdir=rust.vim
   source=$modulesdir/$rustvimdir
@@ -117,6 +118,16 @@ else
     createSymLink $source $target
   else
     echo "rust.vim module not present"
+  fi
+
+  ##########
+  blackdir=black
+  source=$modulesdir/$blackdir
+  if [ -d "$source" ]; then
+    target=$vimpacksdir/$blackdir
+    createSymLink $source $target
+  else
+    echo "black module not present"
   fi
 fi
 
