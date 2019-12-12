@@ -45,3 +45,6 @@ if fileExists $file; then
 # Tell antigen that you're done.
   antigen apply
 fi
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+export LC_ALL=en_US.UTF-8

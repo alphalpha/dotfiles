@@ -2,7 +2,7 @@
   sus = submodule foreach 'git status --short'
   sup = submodule update --recursive --init
   lg = log --graph --color --name-only --decorate=full
-  lgs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  lgs = log --color --graph --date=short -30 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   unstage = reset HEAD --
   co = checkout
   egc = config --global -e

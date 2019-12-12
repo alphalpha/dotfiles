@@ -121,7 +121,7 @@ else
   fi
 
   ##########
-  blackdir=black
+  blackdir=black/plugin
   source=$modulesdir/$blackdir
   if [ -d "$source" ]; then
     target=$vimpacksdir/$blackdir
