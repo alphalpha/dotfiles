@@ -1,5 +1,54 @@
 fileExists() { test -e $1 }
 
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+zmodload -i zsh/complist
+HISTFILE=~/.zsh/zsh_history
+HISTSIZE=100000
+SAVEHIST=$HISTSIZE
+
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances of the shell
+setopt auto_cd # cd by typing directory name if it's not a command
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
+setopt prompt_subst
+
+# Improve autocompletion style
+zstyle ':completion:*' menu select # select completions with arrow keys
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches
+
+source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+###### Prompt #######
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git*:*' unstagedstr '*'
+zstyle ':vcs_info:git*:*' stagedstr '*'
+zstyle ':vcs_info:git:*' formats '%b %F{red}%m%c%u%f'
+PROMPT='%F{green}%2c%F{blue} [%f '
+RPROMPT='%F{yellow}${vcs_info_msg_0_}%f %F{blue}] %F{green}%D{%L:%M} %F{yellow}%D{%p}%f'
+#####################
+
+# vim mode
+bindkey -v '^?' backward-delete-char
+
 # Use local settings if it exists
 file=~/.zshrc-local
 if fileExists  $file; then
@@ -13,38 +62,3 @@ if fileExists  $file; then
   echo "source $file"
   source $file
 fi
-
-# Source aliases
-file=~/.antigen.zsh
-if fileExists $file; then
-  echo "source $file"
-  source $file
-
-# Load the oh-my-zsh's library.
-  antigen use oh-my-zsh
-
-# Bundles from the default repo (oh-my-zsh)
-  antigen bundle common-aliases
-  antigen-bundle git
-  antigen bundle git-extras
-  antigen bundle git-flow
-  antigen bundle z
-
-  if [[ "$OSTYPE"=="darwin"* ]]; then
-    echo "osx specific bundle"
-    antigen-bundle osx
-  fi
-
-# none oh-my-zsh bundles
-  antigen bundle zsh-users/zsh-syntax-highlighting
-  antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
-
-# Load the theme.
-  antigen theme nanotech
-
-# Tell antigen that you're done.
-  antigen apply
-fi
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-export LC_ALL=en_US.UTF-8

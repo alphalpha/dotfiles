@@ -7,3 +7,4 @@ alias g=git
 alias tag='ctags -R -f ./.git/tags .'
 alias lst='ls -ltr'
 alias please='sudo !!'
+alias lsa='ls -al'
