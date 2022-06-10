@@ -10,7 +10,7 @@ set hlsearch
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set backspace=2
+set backspace=indent,eol,start
 set expandtab
 set relativenumber
 set number
@@ -30,3 +30,4 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 colorscheme smyck
 
 let g:rustfmt_autosave = 1
+let g:clang_format#auto_format = 1
