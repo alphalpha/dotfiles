@@ -62,3 +62,4 @@ if fileExists  $file; then
   echo "source $file"
   source $file
 fi
+export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
