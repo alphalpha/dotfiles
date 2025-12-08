@@ -1,0 +1,29 @@
+os:
+  editPreset: 'vscode'
+git:
+  commit:
+    autoWrapCommitMessage: true
+    autoWrapWidth: 80
+customCommands:
+  - key: "U"
+    command: "git submodule update --init --recursive"
+    context: "global"
+    description: "Update submodules"
+    output: log
+  - key: "G"
+    command: "gh pr view -w || gh pr create -w"
+    context: "global"
+    description: "Go to PR in github"
+  - key: "O"
+    command: "git fetch && git reset --hard FETCH_HEAD"
+    context: global
+    description: "Reset the branch to the origin head"
+    prompts:
+      - type: 'confirm'
+        title: 'Reset branch to origin head'
+        body: 'Are you sure you want to overwrite the local branch?'
+    output: log
+  - key: "<c-C>"
+    command: "code ."
+    context: "global"
+    description: "Open Code"

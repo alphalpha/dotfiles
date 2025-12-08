@@ -22,7 +22,7 @@ createSymLink() {
   if [ -L "$2" ]; then
     rm -rf "$2"
   fi
-  ln -fsv "$1" "$2"
+  ln -fsv -- "$1" "$2"
 }
 
 # $1:sourceFolder $2:target $3:prefix
@@ -131,3 +131,18 @@ else
   fi
 fi
 
+##########
+if [[ "$OSTYPE"=="darwin"* ]]; then
+  source=$pathToScript/lazygit/config.yml
+  if [ -f "$source" ]; then
+    lazygitdir="$HOME/Library/Application Support/lazygit"
+    if [ -d "$lazygitdir" ]; then
+      target="$lazygitdir/config.yml"
+      createSymLink "$source" "$target"
+    else
+      echo "lazygit directory does not exist"
+    fi
+  else
+    echo "no lazygit config file"
+  fi
+fi
