@@ -1,6 +1,7 @@
 fileExists() { test -e $1 }
 
-autoload -Uz compinit
+autoload -Uz compinit && compinit
+
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
   compinit -i
@@ -63,3 +64,7 @@ if fileExists  $file; then
   source $file
 fi
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
