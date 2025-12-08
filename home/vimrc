@@ -32,3 +32,8 @@ colorscheme smyck
 
 let g:rustfmt_autosave = 1
 let g:clang_format#auto_format = 1
+
+highlight DiffAdd    cterm=BOLD ctermfg=NONE ctermbg=22
+highlight DiffDelete cterm=BOLD ctermfg=NONE ctermbg=52
+highlight DiffChange cterm=BOLD ctermfg=NONE ctermbg=23
+highlight DiffText   cterm=BOLD ctermfg=NONE ctermbg=23
