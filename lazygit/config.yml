@@ -1,5 +1,5 @@
 os:
-  editPreset: 'vscode'
+  editPreset: "vscode"
 git:
   commit:
     autoWrapCommitMessage: true
@@ -19,11 +19,11 @@ customCommands:
     context: global
     description: "Reset the branch to the origin head"
     prompts:
-      - type: 'confirm'
-        title: 'Reset branch to origin head'
-        body: 'Are you sure you want to overwrite the local branch?'
+      - type: "confirm"
+        title: "Reset branch to origin head"
+        body: "Are you sure you want to overwrite the local branch?"
     output: log
-  - key: "<c-C>"
+  - key: "<c-c>"
     command: "code ."
     context: "global"
     description: "Open Code"
